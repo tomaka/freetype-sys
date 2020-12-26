@@ -152,15 +152,16 @@
   /**********************************************************************/
 
 
-#include <setjmp.h>
+//#include <setjmp.h>
 
-#define ft_jmp_buf     jmp_buf  /* note: this cannot be a typedef since */
+#define ft_jmp_buf     int  /* note: this cannot be a typedef since */
                                 /*       jmp_buf is defined as a macro  */
                                 /*       on certain platforms           */
 
 #define ft_longjmp     longjmp
-#define ft_setjmp( b ) setjmp( *(ft_jmp_buf*) &(b) ) /* same thing here */
+#define ft_setjmp( b ) 0 /* same thing here */
 
+void longjmp (ft_jmp_buf env, int val) { while(1) {} }
 
   /* the following is only used for debugging purposes, i.e., if */
   /* FT_DEBUG_LEVEL_ERROR or FT_DEBUG_LEVEL_TRACE are defined    */
